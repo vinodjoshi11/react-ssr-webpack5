@@ -1,0 +1,60 @@
+import reducer, { initialState } from './reducer';
+import { ActionTypes } from './actions';
+
+describe('{{properCase reducerName}} reducer', () => {
+  let dateSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    dateSpy = jest.spyOn(Date, 'now').mockImplementation(() => new Date().getTime());
+  });
+
+  afterEach(() => {
+    dateSpy.mockRestore();
+  });
+
+  it('returns the initial state', () => {
+    const receivedState = reducer(undefined, { type: 'undefined' });
+    expect(receivedState).toEqual(initialState);
+  });
+
+  it('handles {{constantCase reducerName}}_REQUEST', () => {
+    const receivedState = reducer(undefined, {
+      type: ActionTypes.{{constantCase reducerName}}_REQUEST,
+    });
+    const expectedState = { ...initialState, isLoading: true };
+    expect(receivedState).toEqual(expectedState);
+  });
+
+  it('handles {{constantCase reducerName}}_SUCCESS', () => {
+    const action = {
+      type: ActionTypes.{{constantCase reducerName}}_SUCCESS,
+      payload: {
+        updatedAt: Date.now(),
+        items: ['item1', 'item2', 'item3'],
+      },
+    };
+    const receivedState = reducer(undefined, action);
+    const expectedState = {
+      ...initialState,
+      updatedAt: Date.now(),
+      items: action.payload.items,
+    };
+    expect(receivedState).toEqual(expectedState);
+  });
+
+  it('handles {{constantCase reducerName}}_FAILURE', () => {
+    const receivedState = reducer(undefined, {
+      type: ActionTypes.{{constantCase reducerName}}_FAILURE,
+    });
+    const expectedState = { ...initialState, didInvalidate: true };
+    expect(receivedState).toEqual(expectedState);
+  });
+
+  it('handles {{constantCase reducerName}}_INVALIDATE', () => {
+    const receivedState = reducer(undefined, {
+      type: ActionTypes.{{constantCase reducerName}}_INVALIDATE,
+    });
+    const expectedState = { ...initialState, didInvalidate: true };
+    expect(receivedState).toEqual(expectedState);
+  });
+});

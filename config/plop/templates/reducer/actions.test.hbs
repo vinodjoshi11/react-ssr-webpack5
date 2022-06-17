@@ -1,0 +1,47 @@
+import * as actions from './actions';
+import { Action } from './types';
+
+describe('{{properCase reducerName}} actions', () => {
+  let dateSpy: jest.SpyInstance;
+
+  beforeEach(() => {
+    dateSpy = jest.spyOn(Date, 'now').mockImplementation(() => new Date().getTime());
+  });
+
+  afterEach(() => {
+    dateSpy.mockRestore();
+  });
+
+  it('have an action to handle a request', () => {
+    const expectedAction: Action = {
+      type: actions.ActionTypes.{{constantCase reducerName}}_REQUEST,
+    };
+    expect(actions.{{camelCase reducerName}}Request()).toEqual(expectedAction);
+  });
+
+  it('have an action to handle a success', () => {
+    const items = ['item1', 'item2', 'item3'];
+    const expectedAction: Action = {
+      type: actions.ActionTypes.{{constantCase reducerName}}_SUCCESS,
+      payload: {
+        items,
+        updatedAt: Date.now(),
+      },
+    };
+    expect(actions.{{camelCase reducerName}}Success(items)).toEqual(expectedAction);
+  });
+
+  it('have an action to handle a failure', () => {
+    const expectedAction: Action = {
+      type: actions.ActionTypes.{{constantCase reducerName}}_FAILURE,
+    };
+    expect(actions.{{camelCase reducerName}}Failure()).toEqual(expectedAction);
+  });
+
+  it('have an action to invalidate the data', () => {
+    const expectedAction: Action = {
+      type: actions.ActionTypes.{{constantCase reducerName}}_INVALIDATE,
+    };
+    expect(actions.{{camelCase reducerName}}Invalidate()).toEqual(expectedAction);
+  });
+});

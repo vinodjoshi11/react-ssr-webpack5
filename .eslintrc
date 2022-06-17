@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "@mxjoly/eslint-config",
+    "@mxjoly/eslint-config/react",
+    "@mxjoly/eslint-config/typescript"
+  ]
+}

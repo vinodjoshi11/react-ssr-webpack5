@@ -1,0 +1,20 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+export type {{properCase componentName}}Props = {
+  id?: React.Key;
+}
+
+export const classNames = {
+  ROOT: '{{properCase componentName}}',
+}
+
+const {{properCase componentName}}: React.FC<{{properCase componentName}}Props> = () => {
+  return <div className={classNames.ROOT}></div>;
+};
+
+{{properCase componentName}}.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+
+export default {{properCase componentName}};

@@ -1,0 +1,18 @@
+# node dependencies
+node_modules
+
+# build
+build
+storybook-static
+
+# environment variables
+.env
+.env.*
+.env.*.local
+
+# jest
+coverage
+__snapshots__
+
+# config files
+app.json
